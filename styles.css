@@ -1,0 +1,202 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-glow: var(--glow);
+  --color-glow-violet: var(--glow-violet);
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.12 0.04 265);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.16 0.05 265 / 0.5);
+  --card-foreground: oklch(0.97 0.01 250);
+  --primary: oklch(0.82 0.14 235);
+  --primary-foreground: oklch(0.12 0.04 265);
+  --secondary: oklch(0.20 0.06 270);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.20 0.05 265);
+  --muted-foreground: oklch(0.70 0.04 250);
+  --accent: oklch(0.65 0.22 290);
+  --accent-foreground: oklch(0.97 0.01 250);
+  --border: oklch(0.97 0.01 250 / 0.10);
+  --input: oklch(0.97 0.01 250 / 0.08);
+  --ring: oklch(0.82 0.14 235);
+  --glow: oklch(0.85 0.15 230);
+  --glow-violet: oklch(0.70 0.22 290);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background-color: var(--color-background); color: var(--color-foreground); }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.30 0.15 250 / 0.35), transparent),
+      radial-gradient(ellipse 60% 40% at 90% 110%, oklch(0.35 0.20 290 / 0.25), transparent),
+      linear-gradient(180deg, oklch(0.10 0.04 265), oklch(0.08 0.03 265));
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(to right, oklch(0.97 0.01 250 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.97 0.01 250 / 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black, transparent 80%);
+  }
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, white, transparent),
+      radial-gradient(1px 1px at 70% 80%, white, transparent),
+      radial-gradient(1px 1px at 40% 70%, white, transparent),
+      radial-gradient(1px 1px at 85% 20%, white, transparent),
+      radial-gradient(1px 1px at 15% 90%, white, transparent),
+      radial-gradient(1px 1px at 55% 15%, white, transparent),
+      radial-gradient(1px 1px at 90% 60%, white, transparent),
+      radial-gradient(1px 1px at 30% 50%, white, transparent);
+    background-size: 400px 400px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.glass {
+  background: linear-gradient(180deg, oklch(0.97 0.01 250 / 0.06), oklch(0.97 0.01 250 / 0.02));
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid oklch(0.97 0.01 250 / 0.10);
+  box-shadow: 0 1px 0 0 oklch(0.97 0.01 250 / 0.08) inset, 0 20px 60px -20px oklch(0 0 0 / 0.6);
+}
+
+.glow-text {
+  text-shadow: 0 0 40px oklch(0.85 0.15 230 / 0.6), 0 0 80px oklch(0.85 0.15 230 / 0.3);
+}
+
+.btn-glow {
+  position: relative;
+  background: linear-gradient(135deg, oklch(0.82 0.14 235), oklch(0.70 0.22 290));
+  color: oklch(0.10 0.04 265);
+  box-shadow: 0 0 30px oklch(0.82 0.14 235 / 0.5), 0 0 60px oklch(0.70 0.22 290 / 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-glow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px oklch(0.82 0.14 235 / 0.8), 0 0 80px oklch(0.70 0.22 290 / 0.5);
+}
+
+.ghost-btn {
+  background: oklch(0.97 0.01 250 / 0.04);
+  border: 1px solid oklch(0.97 0.01 250 / 0.12);
+  transition: all 0.3s ease;
+}
+.ghost-btn:hover {
+  background: oklch(0.97 0.01 250 / 0.08);
+  border-color: oklch(0.82 0.14 235 / 0.5);
+  box-shadow: 0 0 24px oklch(0.82 0.14 235 / 0.25);
+}
+
+.input-glass {
+  background: oklch(0.97 0.01 250 / 0.04);
+  border: 1px solid oklch(0.97 0.01 250 / 0.10);
+  color: oklch(0.97 0.01 250);
+  transition: all 0.25s ease;
+}
+.input-glass:focus {
+  outline: none;
+  border-color: oklch(0.82 0.14 235 / 0.7);
+  box-shadow: 0 0 0 4px oklch(0.82 0.14 235 / 0.15), 0 0 30px oklch(0.82 0.14 235 / 0.25);
+  background: oklch(0.97 0.01 250 / 0.06);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: oklch(0.08 0.03 265);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.preloader-bar {
+  width: min(360px, 60vw);
+  height: 2px;
+  background: oklch(0.97 0.01 250 / 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.preloader-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, oklch(0.82 0.14 235), oklch(0.70 0.22 290));
+  box-shadow: 0 0 20px oklch(0.82 0.14 235 / 0.8);
+}
+
+.project-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: oklch(0.82 0.14 235 / 0.4);
+  box-shadow: 0 30px 80px -20px oklch(0.70 0.22 290 / 0.4), 0 0 40px oklch(0.82 0.14 235 / 0.2);
+}
+
+.nav-link {
+  position: relative;
+  color: oklch(0.85 0.02 250);
+  transition: color 0.2s ease;
+}
+.nav-link:hover { color: oklch(0.97 0.01 250); }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, oklch(0.82 0.14 235), oklch(0.70 0.22 290));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }

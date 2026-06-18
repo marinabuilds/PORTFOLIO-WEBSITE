@@ -1,4 +1,21 @@
-# PORTFOLIO-WEBSITE
-This portfolio showcases my skills, projects, and journey in Data Analysis, Machine Learning, Python, SQL, Power BI, and Artificial Intelligence. The website features an interactive and modern design with immersive 3D elements powered by Spline, creating an engaging user experience. Lovable AI helped accelerate the development process and transform ideas into a polished portfolio.
+# Routes
 
-🔗 Portfolio: https://portfoliomarina.lovable.app
+TanStack Start uses **file-based routing**. Every `.tsx` file in this directory
+is a route. Do **not** create `src/pages/`, `src/routes/_app/index.tsx`, or
+`app/layout.tsx` — those are Next.js / Remix conventions. The only root layout
+is `src/routes/__root.tsx`.
+
+## Conventions
+
+| File | URL |
+| --- | --- |
+| `index.tsx` | `/` |
+| `about.tsx` | `/about` |
+| `users/index.tsx` | `/users` |
+| `users/$id.tsx` | `/users/:id` (dynamic — bare `$`, no curly braces) |
+| `posts/{-$category}.tsx` | `/posts/:category?` (optional segment) |
+| `files/$.tsx` | `/files/*` (splat — read via `_splat` param, never `*`) |
+| `_layout.tsx` | layout route (renders children via `<Outlet />`) |
+| `__root.tsx` | app shell — wraps every page; preserve `<Outlet />` |
+
+`routeTree.gen.ts` is auto-generated. Don't edit it by hand.
